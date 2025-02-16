@@ -1,0 +1,70 @@
+@{
+    ViewData["Title"] = "User List";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<style>
+    #raiz{
+        
+        display: flex;
+        flex-direction: column;
+        gap: 5%;
+        justify-content: center;
+        text-align: center;
+    
+    }
+</style>
+
+<main id= "raiz">
+
+    <section>
+    <table class="table table-striped">
+    <thead>
+        <tr>
+        <th scope="col">IdUsuario</th>
+        <th scope="col">NomeUsuario</th>
+        <th scope="col">EmailUsuario</th>
+        <th scope="col">CellNumber</th>
+        <th scope="col">Ativo</th>
+        </tr>
+    </thead>
+    <tbody id="linhas">
+        <tr>
+        <th scope="row">1</th>
+        <td>Otto</td>
+        <td>email</td>
+        <td>85999999</td>
+        <td>Sim</td>
+        </tr>
+    </tbody>
+    </table>
+    </section>
+   
+</main>
+
+<script>
+
+    const linhas = document.querySelector("#linhas");
+
+    fetch("http://localhost:5028/Usuarios/GetAll").then(Response => {
+
+        if (Response.ok) {
+
+             return Response.json();
+        }
+    }
+   ).then(data => {
+
+        console.log(data);
+    
+        for (i = 0; i < data.length; i++) {
+        
+            console.log(data[i]);    
+        }  
+   }  
+
+    ).catch(Error => console.log(Error));
+
+
+</script>
